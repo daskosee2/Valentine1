@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Untuk Nita Amelia ❤️</title>
+    <style>
+        /* RESET & DASAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #ff4d6d, #ff758c, #ff99ac, #ffb3ba, #ff4d6d);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            color: #2d1e1e;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* BACKGROUND HATI JATUH */
+        .heart-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .falling-heart {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #ff4d6d;
+            transform: rotate(45deg);
+            opacity: 0.75;
+            filter: drop-shadow(0 5px 8px rgba(255, 77, 109, 0.3));
+            animation: fallHeart linear infinite;
+        }
+
+        .falling-heart:before,
+        .falling-heart:after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #ff4d6d;
+            border-radius: 50%;
+        }
+
+        .falling-heart:before { top: -9px; left: 0; }
+        .falling-heart:after { top: 0; left: -9px; }
+
+        @keyframes fallHeart {
+            0% { top: -30px; opacity: 0.8; transform: rotate(45deg) scale(1); }
+            100% { top: 110vh; opacity: 0; transform: rotate(45deg) scale(0.4); }
+        }
+
+        /* SLIDE UTAMA */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 25px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.6s;
+            background: rgba(255, 240, 245, 0.2);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 10;
+            overflow-y: auto;
+            pointer-events: auto;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 20;
+        }
+
+        .slide.exit-left {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .slide.exit-right {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        /* BACKGROUND SPESIFIK SLIDE */
+        .slide1 { background: rgba(255, 220, 220, 0.3); backdrop-filter: blur(5px); }
+        .slide3 { background: rgba(255, 170, 180, 0.25); backdrop-filter: blur(5px); color: #3a1e1e; }
+        .slide4 { background: rgba(255, 230, 240, 0.35); backdrop-filter: blur(6px); color: #2c1c1c; }
+        .slide5 { background: rgba(255, 190, 200, 0.25); backdrop-filter: blur(5px); color: #2d1a1a; }
+
+        /* TOMBOL MUSIK & KONTROL */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 999;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            max-width: 200px;
+        }
+
+        .music-control button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #d43f4f;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(2px);
+        }
+
+        .music-control button:hover {
+            transform: scale(1.1);
+            background: #fff;
+        }
+
+        /* AMPLOP SURAT */
+        .envelope {
+            background: rgba(255, 250, 242, 0.9);
+            padding: 35px 30px 180px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(200, 50, 80, 0.25);
+            position: relative;
+            width: 550px;
+            max-width: 95%;
+            color: #4a2a2a;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,240,0.7);
+            animation: gentlePulse 3s infinite ease-in-out;
+        }
+
+        @keyframes gentlePulse {
+            0%,100% { box-shadow: 0 30px 60px rgba(255, 80, 120, 0.2); }
+            50% { box-shadow: 0 35px 70px rgba(255, 80, 120, 0.4); }
+        }
+
+        .envelope h1 {
+            color: #b3404a;
+            letter-spacing: 2px;
+        }
+
+        .envelope-text {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-top: 15px;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .envelope-text b {
+            color: #c1444e;
+        }
+
+        /* POLAROID */
+        .polaroids {
+            position: absolute;
+            bottom: -130px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .polaroid {
+            background: #fffaf2;
+            padding: 10px 10px 20px;
+            border-radius: 12px;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+            transform: rotate(-5deg);
+            transition: transform 0.2s;
+        }
+
+        .polaroid:last-child { transform: rotate(5deg); }
+
+        .polaroid img {
+            width: 170px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+            background: #ffe3e3;
+        }
+
+        /* SLIDE 2: TENTANG KAMU */
+        .slide3 img {
+            width: 460px;
+            max-width: 90%;
+            height: auto;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 30px;
+            margin: 25px 0 20px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+            border: 4px solid rgba(255,255,255,0.7);
+        }
+
+        .slide3 p {
+            max-width: 600px;
+            font-size: 18px;
+            background: rgba(255,255,250,0.6);
+            padding: 18px 28px;
+            border-radius: 60px 20px 60px 20px;
+            backdrop-filter: blur(4px);
+            color: #2e1e1e;
+            font-weight: 500;
+            margin-top: 10px;
+            border: 1px solid #fff;
+        }
+
+        /* SLIDE 3: PAKET CINTA */
+        .slide4 {
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        /* ANIMASI BOUNCE */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* SLIDE 4: GALERI 4 FOTO */
+        .heart-gallery {
+            position: relative;
+            width: 550px;
+            max-width: 95%;
+            height: 450px;
+            margin: 20px auto;
+        }
+
+        .heart-photo {
+            position: absolute;
+            width: 200px;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 18px 30px rgba(0,0,0,0.3);
+            border: 4px solid white;
+            transition: all 0.3s;
+        }
+
+        .photo1 { top: 0; left: 0; transform: rotate(-12deg); z-index: 2; }
+        .photo2 { top: 0; right: 0; transform: rotate(10deg); z-index: 2; }
+        .photo3 { bottom: 0; left: 0; transform: rotate(12deg); z-index: 2; }
+        .photo4 { bottom: 0; right: 0; transform: rotate(-8deg); z-index: 2; }
+
+        .heart-photo:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 30;
+            border-color: #ffe0e5;
+        }
+
+        .slide5 p {
+            max-width: 650px;
+            margin-top: 30px;
+            font-size: 20px;
+            background: rgba(255,255,240,0.6);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            font-weight: 600;
+            color: #531e1e;
+        }
+
+        /* NAVIGASI */
+        .nav-btn {
+            position: fixed;
+            bottom: 35px;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.9);
+            color: #c1434b;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: 0.2s;
+            border: 1px solid white;
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            letter-spacing: 2px;
+        }
+
+        .nav-btn:hover {
+            background: white;
+            transform: scale(1.08);
+            color: #a12b3a;
+        }
+
+        .next { right: 30px; }
+        .prev { left: 30px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 750px) {
+            .envelope { padding: 25px 20px 150px; }
+            .polaroid img { width: 130px; height: 170px; }
+            .polaroids { gap: 15px; bottom: -100px; }
+            
+            .heart-gallery { height: 400px; }
+            .heart-photo { width: 150px; height: 190px; }
+            
+            .slide3 p { font-size: 16px; padding: 15px; }
+            
+            .nav-btn { padding: 12px 24px; font-size: 18px; bottom: 20px; }
+            .next { right: 15px; }
+            .prev { left: 15px; }
+            
+            .music-control { top: 10px; right: 10px; gap: 6px; }
+            .music-control button { padding: 8px 14px; font-size: 14px; }
+        }
+
+        @media (max-width: 480px) {
+            .polaroid img { width: 100px; height: 130px; }
+            .envelope { padding: 20px 15px 120px; }
+            .heart-gallery { height: 350px; }
+            .heart-photo { width: 120px; height: 160px; }
+        }
+
+        img {
+            background: #ffe0e5;
+            color: #a14a5a;
+            font-size: 14px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            object-fit: cover;
+        }
+
+        .slide::-webkit-scrollbar {
+            width: 4px;
+        }
+        .slide::-webkit-scrollbar-thumb {
+            background: rgba(255,120,140,0.5);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BACKGROUND HATI JATUH -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <!-- MUSIC -->
+    <audio id="bgMusic" loop preload="none">
+        <source src="romantic.mp3" type="audio/mpeg">
+        Browser tidak mendukung audio.
+    </audio>
+
+    <!-- KONTROL MUSIK DAN HATI -->
+    <div class="music-control">
+        <button onclick="playMusic()" title="Putar musik">▶️</button>
+        <button onclick="pauseMusic()" title="Jeda musik">⏸️</button>
+        <button onclick="setVolume(0.5)" title="Volume 50%">🔊</button>
+        <button onclick="toggleHearts()" title="Hidupkan/matikan hati">❤️‍🔥</button>
+    </div>
+
+    <!-- SLIDE 1: SURAT CINTA + POLAROID -->
+    <div class="slide slide1 active">
+        <div class="envelope">
+            <h1>💌 Surat Kecil 💌</h1>
+            <div class="envelope-text">
+                <b>Untuk Nita Amelia,</b> <br><br>
+                Happy Valentine's Day 🤍 <br>
+                Halo, cantikku.
+                Surat ini isinya sederhana:
+                Makasih yaa karena udah jadi alesan aku tersenyum di hari-hari yang biasa aja. <br>
+                <span style="display:block; margin-top:20px;">Happy Valentine's Day.
+                  Like a diamond, you’re strong, beautiful, and priceless. Jangan lupa ituu.
+                </span>
+            </div>
+            <div class="polaroids">
+                <div class="polaroid">
+                    <img src="foto1.1.jpg" alt="kenangan 1" onerror="this.src='https://placekitten.com/190/250?random=1'; this.alt='Foto 1'">
+                </div>
+                <div class="polaroid">
+                    <img src="foto1.2.jpg" alt="kenangan 2" onerror="this.src='https://placekitten.com/190/250?random=2'; this.alt='Foto 2'">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 2: TENTANG KAMU -->
+    <div class="slide slide3">
+        <h1 style="font-size: 2.8rem; text-shadow: 2px 2px 0 white;">✨ Tentang Kamu ✨</h1>
+        <img src="foto2.1.jpg" alt="foto spesial" onerror="this.src='https://placekitten.com/460/280?random=3'; this.alt='foto bersama'">
+        <p>
+            sayangg, aku belajar untuk lebih banyak bersyukur dan ga mudah buat mengeluh.
+            Kamu ngajarin aku bahwa menghadapi masalah ga harus buru-buru dan emosi,
+            tapi dengan hati yang tenang dan pikiran yang jernih.
+
+            Semenjak ada kamu, aku pelan-pelan belajar jadi lebih dewasa.
+            Dan untuk itu, aku selalu berterima kasih.
+            <br>🤍🤍🤍
+        </p>
+    </div>
+
+        <!-- SLIDE 3: PAKET CINTA 📦 -->
+    <div class="slide slide4">
+        <h1 style="
+            font-size: 2.5rem;
+            color: #8a3a3e;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+        ">
+            📦 PAKET CINTA 📦
+        </h1>
+
+        <!-- ANIMASI PAKET -->
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 5px auto;
+            position: relative;
+            width: 100%;
+        ">
+            <!-- Paket 1: AKU -->
+            <div style="
+                background: #ffe5e5;
+                padding: 18px 35px;
+                border-radius: 25px;
+                border: 5px solid white;
+                box-shadow: 0 12px 25px rgba(200,80,100,0.4);
+                position: relative;
+                transform: rotate(-2deg);
+                width: 260px;
+                backdrop-filter: blur(5px);
+                margin-bottom: 5px;
+                z-index: 10;
+            ">
+                <div style="font-size: 48px; margin-bottom: 5px;">📦</div>
+                <div style="
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #b33b4a;
+                    letter-spacing: 8px;
+                ">AKU</div>
+                <div style="
+                    position: absolute;
+                    top: -12px;
+                    right: -12px;
+                    background: #ff8a9f;
+                    color: white;
+                    padding: 10px 16px;
+                    border-radius: 50px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    border: 3px solid white;
+                    box-shadow: 0 5px 0 #9f4b4b;
+                ">📮</div>
+            </div>
+
+            <!-- Panah bawah -->
+            <div style="
+                font-size: 40px;
+                color: #ff4d6d;
+                margin: 0px 0 0px;
+                text-shadow: 0 6px 12px rgba(255,80,100,0.6);
+                animation: bounce 1.3s infinite;
+                line-height: 1.2;
+                position: relative;
+                z-index: 15;
+            ">⬇️</div>
+
+            <!-- Paket 2: KAMU -->
+            <div style="
+                background: #ffe0ec;
+                padding: 18px 35px;
+                border-radius: 25px;
+                border: 5px solid white;
+                box-shadow: 0 12px 25px rgba(200,80,100,0.4);
+                position: relative;
+                transform: rotate(2deg);
+                width: 260px;
+                backdrop-filter: blur(5px);
+                margin-bottom: 5px;
+                z-index: 10;
+            ">
+                <div style="font-size: 48px; margin-bottom: 5px;">💝</div>
+                <div style="
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #b33b4a;
+                    letter-spacing: 8px;
+                ">KAMU</div>
+                <div style="
+                    position: absolute;
+                    top: -12px;
+                    left: -12px;
+                    background: #ffb6c1;
+                    color: white;
+                    padding: 10px 16px;
+                    border-radius: 50px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    border: 3px solid white;
+                    box-shadow: 0 5px 0 #9f4b4b;
+                ">🎀</div>
+            </div>
+
+            <!-- Panah bawah -->
+            <div style="
+                font-size: 40px;
+                color: #ff4d6d;
+                margin: 0px 0 0px;
+                text-shadow: 0 6px 12px rgba(255,80,100,0.6);
+                animation: bounce 1.3s infinite 0.2s;
+                line-height: 1.2;
+                position: relative;
+                z-index: 15;
+            ">⬇️</div>
+
+            <!-- Paket 3: KITA -->
+            <div style="
+                background: #ffd6e0;
+                padding: 18px 35px;
+                border-radius: 25px;
+                border: 5px solid white;
+                box-shadow: 0 12px 25px rgba(200,80,100,0.4);
+                position: relative;
+                transform: rotate(-1deg);
+                width: 260px;
+                backdrop-filter: blur(5px);
+                z-index: 10;
+            ">
+                <div style="font-size: 48px; margin-bottom: 5px;">🤍</div>
+                <div style="
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #b33b4a;
+                    letter-spacing: 8px;
+                ">KITA</div>
+                <div style="
+                    position: absolute;
+                    bottom: -12px;
+                    right: -12px;
+                    background: #ff7a8f;
+                    color: white;
+                    padding: 10px 16px;
+                    border-radius: 50px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    border: 3px solid white;
+                    box-shadow: 0 5px 0 #9f4b4b;
+                ">✨</div>
+            </div>
+        </div>
+
+        <!-- STICKER SAMPAI -->
+        <div style="
+            background: #ff4d6d;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 60px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 6px;
+            display: inline-block;
+            margin: 30px auto 15px;
+            border: 4px solid white;
+            box-shadow: 0 10px 0 #a12b3a, 0 15px 30px rgba(255,0,80,0.3);
+            transform: rotate(1deg);
+        ">
+            🎁 PAKET SAMPAI 🎁
+        </div>
+
+        <!-- ISI PAKET -->
+        <div style="
+            background: rgba(255, 248, 235, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px 30px;
+            border-radius: 35px 35px 35px 8px;
+            max-width: 440px;
+            margin: 10px auto 25px;
+            border-left: 15px solid #ffb3c6;
+            box-shadow: 0 20px 35px rgba(150,50,70,0.2);
+            text-align: left;
+            font-size: 18px;
+            border: 1px solid rgba(255,255,255,0.8);
+        ">
+            <div style="
+                font-size: 28px;
+                font-weight: bold;
+                color: #a12b3a;
+                margin-bottom: 18px;
+                border-bottom: 3px dashed #ff99aa;
+                padding-bottom: 10px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            ">
+                📦 ISI PAKET:
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+                <span style="font-size: 28px;">✅</span>
+                <span style="font-weight: 600; color: #562b2b; font-size: 18px;">1 hati utuh — masih hangat</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+                <span style="font-size: 28px;">✅</span>
+                <span style="font-weight: 600; color: #562b2b; font-size: 18px;">3 tahun kenangan — lengkap</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+                <span style="font-size: 28px;">✅</span>
+                <span style="font-weight: 600; color: #562b2b; font-size: 18px;">Ribuan maaf — udah dimaafkan</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 14px;">
+                <span style="font-size: 28px;">✅</span>
+                <span style="font-weight: 600; color: #562b2b; font-size: 18px;">Jutaan terima kasih — tulus</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+                <span style="font-size: 28px;">✅</span>
+                <span style="font-weight: 600; color: #562b2b; font-size: 18px;">Masa depan — masih nyicil, bareng kamu</span>
+            </div>
+            
+            <div style="
+                margin-top: 25px;
+                padding-top: 18px;
+                border-top: 3px dotted #ff99aa;
+                font-style: italic;
+                color: #b34a5a;
+                font-size: 20px;
+                text-align: center;
+                background: rgba(255,230,240,0.5);
+                border-radius: 30px;
+                padding: 18px;
+            ">
+                <div style="font-weight: 800; margin-bottom: 8px;">✨ RESI PENGIRIMAN ✨</div>
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 10px 0;">
+                    <span style="background: white; padding: 6px 16px; border-radius: 50px; box-shadow: 0 3px 0 #ddd;">📦 AKU</span>
+                    <span style="background: white; padding: 6px 16px; border-radius: 50px; box-shadow: 0 3px 0 #ddd;">💝 KAMU</span>
+                    <span style="background: white; padding: 6px 16px; border-radius: 50px; box-shadow: 0 3px 0 #ddd;">🤍 KITA</span>
+                </div>
+                ✨ PENERIMA: <strong>Nita Amelia</strong><br>
+                ✨ STATUS: <span style="background: #c1e8c1; padding: 6px 22px; border-radius: 60px; color: #1e5a3e; display: inline-block; margin-top: 12px; font-weight: 800; border: 2px solid white;">✅ DITERIMA, JANGAN DI-RETURN YAA CANTIKK ❤️</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 4: 4 TAHUN BERSAMA (4 FOTO) -->
+    <div class="slide slide5">
+        <h1 style="font-size: 2.3rem; color: #80203b;">Sudah 3 Tahun Bersama ✨</h1>
+        <div class="heart-gallery">
+            <img src="foto4.1.jpg" class="heart-photo photo1" alt="foto tahun 1" onerror="this.src='https://placekitten.com/200/240?random=4';">
+            <img src="foto4.2.jpg" class="heart-photo photo2" alt="foto tahun 2" onerror="this.src='https://placekitten.com/200/240?random=5';">
+            <img src="foto4.3.jpg" class="heart-photo photo3" alt="foto tahun 3" onerror="this.src='https://placekitten.com/200/240?random=6';">
+            <img src="foto4.4.jpg" class="heart-photo photo4" alt="foto tahun 4" onerror="this.src='https://placekitten.com/200/240?random=7';">
+        </div>
+        <p>
+            Terima kasih sudah selalu buat hari-hari aku penuh warna. 
+            Setiap momen bersama kamu itu berharga. ❤️
+        </p>
+    </div>
+
+    <!-- NAVIGASI SLIDE -->
+    <button class="nav-btn prev" onclick="prevSlide()">⬅</button>
+    <button class="nav-btn next" onclick="nextSlide()">➡</button>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ----- SLIDE MANAGEMENT -----
+            let currentSlide = 0;
+            const slides = document.querySelectorAll(".slide");
+            const totalSlides = slides.length;
+
+            window.nextSlide = function() {
+                if (currentSlide < totalSlides - 1) {
+                    goToSlide(currentSlide + 1, "next");
+                } else {
+                    goToSlide(0, "next");
+                }
+            };
+
+            window.prevSlide = function() {
+                if (currentSlide > 0) {
+                    goToSlide(currentSlide - 1, "prev");
+                } else {
+                    goToSlide(totalSlides - 1, "prev");
+                }
+            };
+
+            function goToSlide(index, direction = "next") {
+                if (index === currentSlide) return;
+
+                const current = slides[currentSlide];
+                const next = slides[index];
+
+                current.classList.add(direction === "next" ? "exit-left" : "exit-right");
+                
+                next.classList.remove("exit-left", "exit-right");
+                next.classList.add("active");
+
+                setTimeout(() => {
+                    current.classList.remove("active", "exit-left", "exit-right");
+                }, 650);
+
+                currentSlide = index;
+            }
+
+            // ----- MUSIC PLAYER -----
+            const music = document.getElementById("bgMusic");
+
+            window.playMusic = function() {
+                music.play().catch(e => console.log("Interaksi diperlukan: " + e));
+            };
+
+            window.pauseMusic = function() {
+                music.pause();
+            };
+
+            window.setVolume = function(vol) {
+                music.volume = vol;
+            };
+
+            // ----- FALLING HEARTS BACKGROUND -----
+            const heartBg = document.getElementById("heartBg");
+            let heartInterval;
+            let heartsEnabled = true;
+
+            function createFallingHeart() {
+                if (!heartsEnabled) return;
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.width = '18px';
+                heart.style.height = '18px';
+                heart.style.opacity = Math.random() * 0.5 + 0.4;
+                heartBg.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (heart.parentNode) heart.remove();
+                }, 8000);
+            }
+
+            window.startHearts = function() {
+                if (heartInterval) clearInterval(heartInterval);
+                heartInterval = setInterval(createFallingHeart, 450);
+            };
+
+            window.stopHearts = function() {
+                clearInterval(heartInterval);
+                heartInterval = null;
+                const hearts = document.querySelectorAll('.falling-heart');
+                hearts.forEach(h => h.remove());
+            };
+
+            window.toggleHearts = function() {
+                heartsEnabled = !heartsEnabled;
+                if (heartsEnabled) {
+                    startHearts();
+                } else {
+                    stopHearts();
+                    heartsEnabled = false;
+                }
+            };
+
+            startHearts();
+            heartsEnabled = true;
+            music.volume = 0.5;
+        })();
+    </script>
+</body>
+</html>
